@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+    db:
+        container_name: odoo_db
+        image: postgres:13
+        environment:
+            POSTGRES_DB: odoo_db
+            POSTGRES_USER: odoo_user
+            POSTGRES_PASSWORD: odoo_password
+        volumes:
+            - odoo-db-data:/var/lib/postgresql/data
+            - ../init_db:/docker-entrypoint-initdb.d
+        networks:
+            - odoo-network
+
+    odoo:
+        container_name: odoo
+        image: odoo:16.0
+        depends_on:
+            - db
+        ports:
+            - "8069:8069"
+        environment:
+            HOST: db
+            USER: odoo_user
+            PASSWORD: odoo_password
+            DATABASE: odoo_db
+        volumes:
+            - odoo-data:/var/lib/odoo
+            - ./custom_addons:/mnt/extra-addons
+        command: ["odoo", "-i", "base", "--database", "odoo_db", "--db_host", "db", "--db_user", "odoo_user", "--db_password", "odoo_password"]
+        networks:
+            - odoo-network
+
+volumes:
+    odoo-db-data:
+    odoo-data:
+
+networks:
+    odoo-network:

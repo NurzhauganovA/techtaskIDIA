@@ -1,0 +1,4 @@
+CREATE USER odoo_user WITH PASSWORD 'odoo_password';
+CREATE DATABASE odoo_db WITH OWNER odoo_user;
+GRANT ALL PRIVILEGES ON DATABASE odoo_db TO odoo_user;
+ALTER USER odoo_user WITH SUPERUSER;
