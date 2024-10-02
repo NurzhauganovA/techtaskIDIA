@@ -5,12 +5,12 @@
 ```
 .
 ├── /
-│   ├── custom_addons/        # Каталог для кастомных модулей Odoo
-│   ├── init_db/              # Скрипт для инициализации базы данных
-│   │   └── init.sql          # SQL файл для создания пользователя и БД
-│   ├── src/                  # Основные файлы проекта
-│   │   └── docker-compose.yml # Docker Compose конфигурация для запуска Odoo и PostgreSQL
-├── README.md                 # Документация проекта
+│   ├── custom_addons/          # Catalog for Odoo custom modules
+│   ├── init_db/                # Script for database initialization
+│   │   └── init.sql            # SQL file for creating user and DB
+│   ├── src/                    # Main project files
+│   │   └── docker-compose.yml  # Docker Compose configuration to run Odoo and PostgreSQL
+├── README.md                   # Project documentation
 
 ```
 
@@ -19,11 +19,11 @@
 ### Шаг - 1. Clone rep
 ```bash
 git clone https://github.com/NurzhauganovA/techtaskIDIA.git
-cd techtaskIDIA/src
 ```
 
 ### Шаг - 2. Run docker-compose file
 ```bash
+cd techtaskIDIA/src
 docker compose -f docker-compose.yml up --build
 ```
 
